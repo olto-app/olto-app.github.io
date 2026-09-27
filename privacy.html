@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>olto privacy</title>
+<meta name="description" content="What olto keeps, where it lives, and what leaves your iPhone.">
+<meta name="theme-color" content="#F6F2E9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0C0A08" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<style>html{color-scheme:light dark}body{margin:0}</style>
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Geist:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --canvas:#F6F2E9; --soft:#F1EDE5; --card:#FBF9F4; --ink:#1A1611; --muted:#6B6358; --rule:#E2DBCF;
+  --sun:#4F3FD6; --warm:#C98F4E; --accent:#4F3FD6;
+  --fresh:rgba(110,146,185,.24); --maint:rgba(201,189,166,.42); --gain:rgba(79,63,214,.17); --risk:rgba(168,43,23,.14);
+  --word:"Instrument Serif",Georgia,serif; --voice:"Newsreader",Georgia,serif; --data:"Geist",-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --canvas:#0C0A08; --soft:#211D17; --card:#16130F; --ink:#F1EBDD; --muted:#A99F90; --rule:#2E2922;
+  --sun:#6C6CF3; --warm:#D9A566; --accent:#8B8BF7;
+  --fresh:rgba(110,146,185,.26); --maint:rgba(201,189,166,.18); --gain:rgba(108,108,243,.24); --risk:rgba(207,79,53,.22); color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --canvas:#0C0A08; --soft:#211D17; --card:#16130F; --ink:#F1EBDD; --muted:#A99F90; --rule:#2E2922;
+  --sun:#6C6CF3; --warm:#D9A566; --accent:#8B8BF7;
+  --fresh:rgba(110,146,185,.26); --maint:rgba(201,189,166,.18); --gain:rgba(108,108,243,.24); --risk:rgba(207,79,53,.22); color-scheme:dark;}
+body{background:var(--canvas);color:var(--ink);font-family:var(--data);font-size:16px;line-height:1.6;padding-inline:20px;padding-block:0 72px}
+.sky{margin-inline:-20px;height:190px;background:linear-gradient(to bottom,var(--fresh) 0 25%,var(--maint) 25% 50%,var(--gain) 50% 75%,var(--risk) 75% 100%);-webkit-mask-image:linear-gradient(to bottom,#000 50%,transparent);mask-image:linear-gradient(to bottom,#000 50%,transparent)}
+main{max-width:680px;margin:-20px auto 0;display:grid;gap:52px;position:relative}
+.mark{width:84px;height:auto;display:block}
+.name{font-family:var(--word);font-style:italic;font-weight:400;font-size:1.25em;letter-spacing:.005em;-webkit-text-stroke:.35px currentColor}
+.voice{font-family:var(--voice);font-style:italic;font-weight:400}
+.card p.voice,.note.voice{font-size:18px;line-height:1.5}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.word{font-family:var(--word);font-style:italic;font-weight:400;font-size:76px;line-height:.95;margin:10px 0 0;letter-spacing:-.01em}
+.tag{font-family:var(--voice);font-style:italic;font-weight:300;font-size:30px;line-height:1.25;margin:12px 0 0}
+.lede{font-family:var(--data);font-style:normal;font-weight:300;font-size:22px;line-height:1.35;margin:14px 0 0;text-wrap:balance}
+.sub{margin:14px 0 0;color:var(--muted);max-width:60ch}
+.pill{display:inline-block;font-size:12px;font-weight:500;letter-spacing:.04em;padding:3px 10px;border-radius:999px;background:var(--soft);border:1px solid var(--rule)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;background:var(--canvas);margin-inline:-20px;padding:10px 20px;border-bottom:1px solid var(--rule);display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;font-size:14px}
+nav::-webkit-scrollbar{display:none}
+nav a{color:var(--muted);text-decoration:none;white-space:nowrap}
+nav a:hover,nav a:focus-visible{color:var(--ink)}
+h2{font-family:var(--voice);font-style:normal;font-weight:400;font-size:32px;line-height:1.15;margin:0;text-wrap:balance}
+h3{font-family:var(--voice);font-style:normal;font-weight:500;font-size:21px;line-height:1.25;margin:0}
+.eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:500}
+section{display:grid;gap:20px;scroll-margin-top:60px}
+.note{margin:0;color:var(--muted);max-width:62ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:17px;padding:16px 18px;display:grid;gap:6px;align-content:start}
+.card p{margin:0;font-size:15px}
+.card ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:15px}
+.card .best{font-size:13px;color:var(--muted)}
+.pages{display:grid;gap:18px}
+.page{display:grid;grid-template-columns:100px 1fr;gap:2px 18px}
+.page .n{font-family:var(--voice);font-style:normal;font-weight:500;font-size:26px;line-height:1.1}
+.page .q{font-size:13px;color:var(--muted);grid-column:1}
+.page p{margin:0;grid-column:2;grid-row:1 / span 2}
+@media (max-width:480px){.page{grid-template-columns:1fr}.page p{grid-column:1;grid-row:auto}}
+.qa{display:grid;gap:18px}
+.qa h4{font-size:16px;font-weight:500;margin:0 0 3px}
+.qa p{margin:0}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:14px}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:12px}
+ol.steps li::before{content:counter(s);font-family:var(--data);font-weight:300;font-size:24px;line-height:1.1;color:var(--sun)}
+ol.steps b{display:block;font-weight:500}
+.join{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;background:var(--card);border:1px solid var(--rule);border-radius:17px;padding:18px}
+@media (max-width:480px){.join{grid-template-columns:1fr}}
+#qr{width:132px;height:132px;background:#fff;padding:8px;border-radius:10px;display:grid;place-items:center}
+#qr img,#qr canvas{width:116px!important;height:116px!important}
+.btn{display:inline-block;background:var(--ink);color:var(--canvas);text-decoration:none;border-radius:999px;padding:9px 18px;font-weight:500;font-size:15px}
+hr{border:0;border-top:1px solid var(--rule);margin:0}
+footer{font-size:13px;color:var(--muted);display:grid;gap:6px}
+</style>
+<div class="sky" aria-hidden="true"></div>
+<main>
+<header>
+  <a href="./" aria-label="olto home"><img class="mark" src="assets/mark.svg" alt=""></a>
+  <h2 style="margin-top:18px">Privacy</h2>
+  <p class="sub">Last updated 27 September 2026 · applies to the olto iPhone app, beta included.</p>
+</header>
+
+<section>
+  <h3>The short version</h3>
+  <p class="note">Your training stays on your iPhone. olto has no account, no ads, no analytics and no tracking. Nothing is sold or shared. Data leaves the phone only through services you switch on yourself, listed below.</p>
+</section>
+
+<section>
+  <h3>What olto keeps, on your iPhone</h3>
+  <p class="note">Workouts you record or import (time, distance, route, heart rate, power, cadence), the notes and ratings you add, your gear and its use, your plans and settings, and the health readings you allow it to read. It is stored in the app's own storage on the device. The on-device reading and narration run on the iPhone itself.</p>
+</section>
+
+<section>
+  <h3>Apple Health</h3>
+  <p class="note">With your permission olto reads workouts, heart rate, heart rate variability, resting heart rate, sleep and related readings, and writes the workouts it records. You choose each type in the Health permission sheet and can change it any time in the Health app. Health data is never used for advertising and never leaves the device through olto, except through a service below that you switch on.</p>
+</section>
+
+<section>
+  <h3>What can leave the phone, only if you switch it on</h3>
+  <div class="grid">
+    <div class="card"><h3>iCloud backup</h3><p>A backup archive of your olto data in your own iCloud storage, readable only by your Apple account.</p></div>
+    <div class="card"><h3>intervals.icu</h3><p>With your own API key: activities you choose to send, or activities and wellness readings brought in from your intervals.icu account. The key stays in the iPhone's Keychain.</p></div>
+    <div class="card"><h3>Weather</h3><p>The workout's location is sent to Open-Meteo to look up the weather at the start. Open-Meteo needs no account and receives no identity.</p></div>
+    <div class="card"><h3>Sensors</h3><p>Heart rate straps, power meters and Polar devices connect over Bluetooth, directly to the phone.</p></div>
+  </div>
+</section>
+
+<section>
+  <h3>Location</h3>
+  <p class="note">Location is used to record routes and, if you allow it in the background, to notice a workout you forgot to start. It stays on the phone except for the weather lookup above.</p>
+</section>
+
+<section>
+  <h3>Beta testing</h3>
+  <p class="note">In the TestFlight beta, Apple shares crash reports and any feedback or screenshots you choose to send. Those are handled under Apple's TestFlight terms and used only to fix the app.</p>
+</section>
+
+<section>
+  <h3>Your control</h3>
+  <p class="note">Turn any connection off in olto's settings, revoke Health or location access in iOS Settings, or delete the app to remove everything it stores on the phone. An iCloud backup can be removed in iOS Settings → your name → iCloud → Manage Storage.</p>
+</section>
+
+<section>
+  <h3>Children</h3>
+  <p class="note">olto is not directed at children under 16.</p>
+</section>
+
+<section>
+  <h3>Contact</h3>
+  <p class="note">Questions about privacy: <a href="mailto:oltoapp@icloud.com">oltoapp@icloud.com</a>. Changes to this page are dated above.</p>
+</section>
+</main>
+</body>
+</html>

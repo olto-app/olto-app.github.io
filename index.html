@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>olto — your training, understood</title>
+<meta name="description" content="olto records every workout, even the ones you forgot to start, and tells you each day how much to do. An independent iPhone app, free in beta.">
+<meta property="og:title" content="olto — your training, understood">
+<meta property="og:description" content="Every workout recorded, and a clear answer each day to how much you should do. Free iPhone beta.">
+<meta property="og:image" content="assets/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F6F2E9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0C0A08" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<style>html{color-scheme:light dark}body{margin:0}</style>
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Geist:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --canvas:#F6F2E9; --soft:#F1EDE5; --card:#FBF9F4; --ink:#1A1611; --muted:#6B6358; --rule:#E2DBCF;
+  --sun:#4F3FD6; --warm:#C98F4E; --accent:#4F3FD6;
+  --fresh:rgba(110,146,185,.24); --maint:rgba(201,189,166,.42); --gain:rgba(79,63,214,.17); --risk:rgba(168,43,23,.14);
+  --word:"Instrument Serif",Georgia,serif; --voice:"Newsreader",Georgia,serif; --data:"Geist",-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --canvas:#0C0A08; --soft:#211D17; --card:#16130F; --ink:#F1EBDD; --muted:#A99F90; --rule:#2E2922;
+  --sun:#6C6CF3; --warm:#D9A566; --accent:#8B8BF7;
+  --fresh:rgba(110,146,185,.26); --maint:rgba(201,189,166,.18); --gain:rgba(108,108,243,.24); --risk:rgba(207,79,53,.22); color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --canvas:#0C0A08; --soft:#211D17; --card:#16130F; --ink:#F1EBDD; --muted:#A99F90; --rule:#2E2922;
+  --sun:#6C6CF3; --warm:#D9A566; --accent:#8B8BF7;
+  --fresh:rgba(110,146,185,.26); --maint:rgba(201,189,166,.18); --gain:rgba(108,108,243,.24); --risk:rgba(207,79,53,.22); color-scheme:dark;}
+body{background:var(--canvas);color:var(--ink);font-family:var(--data);font-size:16px;line-height:1.6;padding-inline:20px;padding-block:0 72px}
+.sky{margin-inline:-20px;height:190px;background:linear-gradient(to bottom,var(--fresh) 0 25%,var(--maint) 25% 50%,var(--gain) 50% 75%,var(--risk) 75% 100%);-webkit-mask-image:linear-gradient(to bottom,#000 50%,transparent);mask-image:linear-gradient(to bottom,#000 50%,transparent)}
+main{max-width:680px;margin:-20px auto 0;display:grid;gap:52px;position:relative}
+.mark{width:84px;height:auto;display:block}
+.name{font-family:var(--word);font-style:italic;font-weight:400;font-size:1.25em;letter-spacing:.005em;-webkit-text-stroke:.35px currentColor}
+.voice{font-family:var(--voice);font-style:italic;font-weight:400}
+.card p.voice,.note.voice{font-size:18px;line-height:1.5}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.word{font-family:var(--word);font-style:italic;font-weight:400;font-size:76px;line-height:.95;margin:10px 0 0;letter-spacing:-.01em}
+.tag{font-family:var(--voice);font-style:italic;font-weight:300;font-size:30px;line-height:1.25;margin:12px 0 0}
+.lede{font-family:var(--data);font-style:normal;font-weight:300;font-size:22px;line-height:1.35;margin:14px 0 0;text-wrap:balance}
+.sub{margin:14px 0 0;color:var(--muted);max-width:60ch}
+.pill{display:inline-block;font-size:12px;font-weight:500;letter-spacing:.04em;padding:3px 10px;border-radius:999px;background:var(--soft);border:1px solid var(--rule)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;background:var(--canvas);margin-inline:-20px;padding:10px 20px;border-bottom:1px solid var(--rule);display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;font-size:14px}
+nav::-webkit-scrollbar{display:none}
+nav a{color:var(--muted);text-decoration:none;white-space:nowrap}
+nav a:hover,nav a:focus-visible{color:var(--ink)}
+h2{font-family:var(--voice);font-style:normal;font-weight:400;font-size:32px;line-height:1.15;margin:0;text-wrap:balance}
+h3{font-family:var(--voice);font-style:normal;font-weight:500;font-size:21px;line-height:1.25;margin:0}
+.eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:500}
+section{display:grid;gap:20px;scroll-margin-top:60px}
+.note{margin:0;color:var(--muted);max-width:62ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:17px;padding:16px 18px;display:grid;gap:6px;align-content:start}
+.card p{margin:0;font-size:15px}
+.card ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:15px}
+.card .best{font-size:13px;color:var(--muted)}
+.pages{display:grid;gap:18px}
+.page{display:grid;grid-template-columns:100px 1fr;gap:2px 18px}
+.page .n{font-family:var(--voice);font-style:normal;font-weight:500;font-size:26px;line-height:1.1}
+.page .q{font-size:13px;color:var(--muted);grid-column:1}
+.page p{margin:0;grid-column:2;grid-row:1 / span 2}
+@media (max-width:480px){.page{grid-template-columns:1fr}.page p{grid-column:1;grid-row:auto}}
+.qa{display:grid;gap:18px}
+.qa h4{font-size:16px;font-weight:500;margin:0 0 3px}
+.qa p{margin:0}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:14px}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:12px}
+ol.steps li::before{content:counter(s);font-family:var(--data);font-weight:300;font-size:24px;line-height:1.1;color:var(--sun)}
+ol.steps b{display:block;font-weight:500}
+.join{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;background:var(--card);border:1px solid var(--rule);border-radius:17px;padding:18px}
+@media (max-width:480px){.join{grid-template-columns:1fr}}
+#qr{width:132px;height:132px;background:#fff;padding:8px;border-radius:10px;display:grid;place-items:center}
+#qr img,#qr canvas{width:116px!important;height:116px!important}
+.btn{display:inline-block;background:var(--ink);color:var(--canvas);text-decoration:none;border-radius:999px;padding:9px 18px;font-weight:500;font-size:15px}
+hr{border:0;border-top:1px solid var(--rule);margin:0}
+footer{font-size:13px;color:var(--muted);display:grid;gap:6px}
+</style>
+
+<div class="sky" aria-hidden="true"></div>
+<main>
+  <header>
+    <svg class="mark" viewBox="0 0 48 48" role="img" aria-label="olto">
+      <circle cx="24" cy="21" r="13" fill="var(--sun)"/>
+      <rect x="2.6" y="33.1" width="42.8" height="4.6" rx="2.3" fill="var(--warm)"/>
+    </svg>
+    <h1 class="sr">olto</h1>
+    <p class="tag" style="font-family:var(--voice);font-style:italic;font-weight:400;font-size:30px;line-height:1.3;margin-top:22px"><span class="name">olto</span> is your training, understood.</p>
+    <p class="lede">Every workout recorded, even the ones you forgot to start, and a clear answer each day to how much you should do.</p>
+    <p class="sub">Made for everyone who moves. An iPhone is all you need; every device you already own makes it sharper. An independent app, free while in beta.</p>
+    <p style="margin:16px 0 0"><span class="pill">iPhone · TestFlight beta</span></p>
+  </header>
+
+  <nav aria-label="Sections">
+    <a href="#why">why olto</a><a href="#pages">the app</a><a href="#you">what you tell it</a><a href="#sources">your devices</a><a href="#intervals">intervals.icu</a><a href="#polar">polar</a><a href="#science">how it thinks</a><a href="#join">join the beta</a>
+  </nav>
+
+  <section id="why">
+    <span class="eyebrow">why olto</span>
+    <h2>Simple on the surface, because it knows you underneath.</h2>
+    <div class="grid">
+      <div class="card"><h3>It notices when you move</h3><p>Rides, runs and walks are recorded in the background with just your iPhone. Forgot to start one? olto finds it afterwards and asks you to confirm.</p></div>
+      <div class="card"><h3>One workout, one truth</h3><p>When several devices record the same session a little differently, olto checks each against the others and keeps one honest version.</p></div>
+      <div class="card"><h3>How much, today</h3><p>A recommended range every morning, and a safe ceiling: the most you can take on before recovery would need more than a few days.</p></div>
+      <div class="card"><h3>It learns from you</h3><p>How a session felt, how your body feels, how your shoes fit: your own words count as much as the numbers, and everything feeds one picture of you.</p></div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="pages">
+    <span class="eyebrow">the app</span>
+    <h2>Five pages, one question each.</h2>
+    <div class="pages">
+      <div class="page"><span class="n">olto</span><span class="q">let's go</span><p>Where you start a workout, or let one start itself. It shows how much you've done today and how much is left in the tank.</p></div>
+      <div class="page"><span class="n">journal</span><span class="q">what did I do?</span><p>Your training diary. Every workout lands here to keep, correct or add to: how it felt, what you wore, a note. Old sessions can be improved later.</p></div>
+      <div class="page"><span class="n">form</span><span class="q">where am I going?</span><p>Whether you're getting fitter, holding steady or overdoing it, and a plan toward your goal that fits the time you really have.</p></div>
+      <div class="page"><span class="n">you</span><span class="q">where am I?</span><p>What your body can do right now: fitness, heart, sleep and recovery, each with how sure olto is about it.</p></div>
+      <div class="page"><span class="n">gear</span><span class="q">what do I use?</span><p>Your bikes, shoes and devices: which one you used when, how far they've gone, how they perform and fit, and when they need care.</p></div>
+    </div>
+    <p class="note">And a map of everywhere you've been, with your regular routes, your best times on them and new turns worth trying.</p>
+  </section>
+
+  <hr>
+
+  <section id="you">
+    <span class="eyebrow">what you tell it</span>
+    <h2>Your feelings are data too.</h2>
+    <div class="grid">
+      <div class="card"><h3>A journal, not just a log</h3><p>After a session, say how hard it felt, how your legs and body feel, how you slept, anything that stood out. olto learns what "hard" means for you and weighs tomorrow accordingly.</p></div>
+      <div class="card"><h3>Gear that learns</h3><p>olto recognises which shoes or bike you used from where, how fast and how hard you went, and tags the workout for you to confirm. Add how they fit, the size, how they feel after a hundred kilometres: it tracks wear and how each piece performs over time, and tells you when something needs a service or is close to retirement.</p></div>
+    </div>
+    <p class="note">Numbers from sensors and words from you end up in the same place. The more you tell it, the more its recommendations sound like you.</p>
+  </section>
+
+  <hr>
+
+  <section id="sources">
+    <span class="eyebrow">your devices</span>
+    <h2>Works with what you have.</h2>
+    <p class="note">olto reads Apple Health, so anything that writes to it counts: an Apple Watch, but also Garmin, Polar, Oura, Whoop, a smart scale or any app that saves workouts, sleep or heart rate there. For the full detail of each workout, two more doors are open.</p>
+    <div class="grid">
+      <div class="card"><h3>Apple Health</h3>
+        <ul><li>Built into every iPhone, nothing to set up.</li><li>Your phone's own motion, steps and GPS, plus whatever your watch, ring or apps save there.</li><li>Sleep, heart rate variability and resting heart rate come from here and set your daily range.</li><li>Many watch apps save only a summary of each workout: time, distance, average heart rate.</li></ul>
+        <span class="best">Enough for: most people, from day one.</span></div>
+      <div class="card"><h3>intervals.icu</h3>
+        <ul><li>A free training platform that receives the original file from Garmin, Suunto, Coros, Wahoo, Polar Flow, Zwift and more.</li><li>Second-by-second heart rate, power, cadence, speed, altitude and laps.</li><li>Works both ways: sessions olto plans can travel on to your watch.</li></ul>
+        <span class="best">Worth it for: a non-Apple watch, a bike computer or a power meter.</span></div>
+      <div class="card"><h3>Polar, direct</h3>
+        <ul><li>Polar sensors connect to olto over Bluetooth, no account needed.</li><li>The most precise heart data there is, live while you record.</li><li>Sensors that store their own workouts hand them to olto directly.</li></ul>
+        <span class="best">Worth it for: accurate heart rate on anything, strength and indoor included.</span></div>
+    </div>
+    <p class="note">They combine. When the same session arrives through more than one door, olto merges it into one.</p>
+  </section>
+
+  <hr>
+
+  <section id="intervals">
+    <span class="eyebrow">set up intervals.icu</span>
+    <h2>Ten minutes, once.</h2>
+    <p class="note">intervals.icu has a lot of options. You only need these.</p>
+    <ol class="steps">
+      <li><span><b>Create a free account</b>at intervals.icu, in any browser.</span></li>
+      <li><span><b>Connect your watch's own app</b>In Settings, under connections, link Garmin Connect, Suunto, Coros, Wahoo, Polar Flow or whichever you use. Connect it directly: workouts that only arrive through Strava can't be passed on to other apps.</span></li>
+      <li><span><b>Let planned workouts reach your watch (optional)</b>In that same connection, switch on uploading planned workouts.</span></li>
+      <li><span><b>Copy two things</b>From the developer settings: your athlete ID (it looks like i123456) and your API key. Keep the key private.</span></li>
+      <li><span><b>Paste them into olto</b>Settings, then sources, then intervals.icu. New workouts then arrive by themselves and wait in your journal.</span></li>
+    </ol>
+  </section>
+
+  <hr>
+
+  <section id="polar">
+    <span class="eyebrow">polar</span>
+    <h2>Two kinds of Polar device, two paths.</h2>
+    <div class="grid">
+      <div class="card"><h3>Sensors: straight to olto</h3>
+        <p>The H10 chest strap, the Verity Sense and the Loop talk to olto directly. Record with the phone, or record on the device and leave the phone at home: olto downloads the session the next time they meet, and shows sessions the Loop recorded on its own for you to import.</p>
+        <span class="best">Set up: wake the device, then in olto open gear, then connected devices, and pick it once.</span></div>
+      <div class="card"><h3>Watches: through Polar Flow</h3>
+        <p>Polar watches send their workouts to the Polar Flow app. From there, link Polar Flow to intervals.icu (steps above) and olto receives the full recording. Polar Flow can also write a summary to Apple Health.</p>
+        <span class="best">Set up: the intervals.icu steps, choosing Polar Flow as the connection.</span></div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="science">
+    <span class="eyebrow">how it thinks</span>
+    <h2>Science does the maths. AI only does the talking.</h2>
+    <div class="qa">
+      <div><h4>Every number has a source</h4><p>Load, fitness, fatigue, zones and the safe ceiling come from established, referenceable sports-science models. Tap any number to see where it came from and how sure olto is.</p></div>
+      <div><h4>On-device AI narrates</h4><p>Apple's on-device model turns those numbers into plain sentences. It reads; it never calculates. It runs on your iPhone, and Apple's Private Cloud Compute is used only if you switch it on.</p></div>
+      <div><h4>Honest when it's guessing</h4><p>An estimate is labelled as one. A labelled good guess beats a precise-looking wrong number.</p></div>
+      <div><h4>Every sport counts</h4><p>Cycling, running, walking, hiking, rowing, strength, yoga and more, each with its own load, plans and review.</p></div>
+      <div><h4>Your data stays yours</h4><p>It lives on your iPhone and in the services you choose to connect. Nothing is sent anywhere before you've seen it.</p></div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="join">
+    <span class="eyebrow">join the beta</span>
+    <h2>Free while it grows.</h2>
+    <div class="join">
+      <div id="qr" aria-label="QR code for the beta"></div>
+      <div style="display:grid;gap:10px">
+        <p style="margin:0">Scan with your iPhone camera, or tap the button on your iPhone. It opens Apple's TestFlight app, which installs olto.</p>
+        <p style="margin:0"><a class="btn" id="joinlink" href="#join">join on TestFlight</a></p>
+        <p class="note" id="joinnote" style="font-size:14px">New builds arrive every week or two. Things will change and some will break: send a screenshot through TestFlight with one sentence about what you expected.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>olto builds on public tools: Apple HealthKit, the intervals.icu API and Polar's open Bluetooth SDK. They aren't partners or sponsors; olto uses what they make public.</span>
+    <span>An independent app. olto is written in lowercase on purpose. Questions: <a href="mailto:oltoapp@icloud.com">oltoapp@icloud.com</a> or a message on Instagram. <a href="privacy.html">Privacy</a>.</span>
+  </footer>
+</main>
+<script>
+// The TestFlight public link. The QR is a static image (assets/beta-qr.svg),
+// made from the same link, so the page needs no script from anywhere else.
+const BETA_LINK = "https://testflight.apple.com/join/uTrXgEsq";
+const box = document.getElementById("qr"), link = document.getElementById("joinlink");
+link.href = BETA_LINK;
+box.innerHTML = '<img src="assets/beta-qr.svg" width="116" height="116" alt="QR code: join the olto beta on TestFlight">';
+</script>
+
+</body>
+</html>
