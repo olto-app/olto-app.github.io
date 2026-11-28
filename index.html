@@ -14,77 +14,20 @@
 <meta name="theme-color" content="#0C0A08" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<style>html{color-scheme:light dark}body{margin:0}</style>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="alternate" hreflang="en" href="https://olto-app.github.io/">
+<link rel="alternate" hreflang="es" href="https://olto-app.github.io/es/">
+<link rel="alternate" hreflang="de" href="https://olto-app.github.io/de/">
+<link rel="alternate" hreflang="pt-BR" href="https://olto-app.github.io/pt-br/">
 </head>
 <body>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Geist:wght@300;400;500;600&display=swap">
-<style>
-:root{
-  --canvas:#F6F2E9; --soft:#F1EDE5; --card:#FBF9F4; --ink:#1A1611; --muted:#6B6358; --rule:#E2DBCF;
-  --sun:#4F3FD6; --warm:#C98F4E; --accent:#4F3FD6;
-  --fresh:rgba(110,146,185,.24); --maint:rgba(201,189,166,.42); --gain:rgba(79,63,214,.17); --risk:rgba(168,43,23,.14);
-  --word:"Instrument Serif",Georgia,serif; --voice:"Newsreader",Georgia,serif; --data:"Geist",-apple-system,"Segoe UI",sans-serif;
-}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --canvas:#0C0A08; --soft:#211D17; --card:#16130F; --ink:#F1EBDD; --muted:#A99F90; --rule:#2E2922;
-  --sun:#6C6CF3; --warm:#D9A566; --accent:#8B8BF7;
-  --fresh:rgba(110,146,185,.26); --maint:rgba(201,189,166,.18); --gain:rgba(108,108,243,.24); --risk:rgba(207,79,53,.22); color-scheme:dark;}}
-:root[data-theme="dark"]{
-  --canvas:#0C0A08; --soft:#211D17; --card:#16130F; --ink:#F1EBDD; --muted:#A99F90; --rule:#2E2922;
-  --sun:#6C6CF3; --warm:#D9A566; --accent:#8B8BF7;
-  --fresh:rgba(110,146,185,.26); --maint:rgba(201,189,166,.18); --gain:rgba(108,108,243,.24); --risk:rgba(207,79,53,.22); color-scheme:dark;}
-body{background:var(--canvas);color:var(--ink);font-family:var(--data);font-size:16px;line-height:1.6;padding-inline:20px;padding-block:0 72px}
-.sky{margin-inline:-20px;height:190px;background:linear-gradient(to bottom,var(--fresh) 0 25%,var(--maint) 25% 50%,var(--gain) 50% 75%,var(--risk) 75% 100%);-webkit-mask-image:linear-gradient(to bottom,#000 50%,transparent);mask-image:linear-gradient(to bottom,#000 50%,transparent)}
-main{max-width:680px;margin:-20px auto 0;display:grid;gap:52px;position:relative}
-.mark{width:84px;height:auto;display:block}
-.name{font-family:var(--word);font-style:italic;font-weight:400;font-size:1.25em;letter-spacing:.005em;-webkit-text-stroke:.35px currentColor}
-.voice{font-family:var(--voice);font-style:italic;font-weight:400}
-.card p.voice,.note.voice{font-size:18px;line-height:1.5}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.word{font-family:var(--word);font-style:italic;font-weight:400;font-size:76px;line-height:.95;margin:10px 0 0;letter-spacing:-.01em}
-.tag{font-family:var(--voice);font-style:italic;font-weight:300;font-size:30px;line-height:1.25;margin:12px 0 0}
-.lede{font-family:var(--data);font-style:normal;font-weight:300;font-size:22px;line-height:1.35;margin:14px 0 0;text-wrap:balance}
-.sub{margin:14px 0 0;color:var(--muted);max-width:60ch}
-.pill{display:inline-block;font-size:12px;font-weight:500;letter-spacing:.04em;padding:3px 10px;border-radius:999px;background:var(--soft);border:1px solid var(--rule)}
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;background:var(--canvas);margin-inline:-20px;padding:10px 20px;border-bottom:1px solid var(--rule);display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;font-size:14px}
-nav::-webkit-scrollbar{display:none}
-nav a{color:var(--muted);text-decoration:none;white-space:nowrap}
-nav a:hover,nav a:focus-visible{color:var(--ink)}
-h2{font-family:var(--voice);font-style:normal;font-weight:400;font-size:32px;line-height:1.15;margin:0;text-wrap:balance}
-h3{font-family:var(--voice);font-style:normal;font-weight:500;font-size:21px;line-height:1.25;margin:0}
-.eyebrow{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:500}
-section{display:grid;gap:20px;scroll-margin-top:60px}
-.note{margin:0;color:var(--muted);max-width:62ch}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--rule);border-radius:17px;padding:16px 18px;display:grid;gap:6px;align-content:start}
-.card p{margin:0;font-size:15px}
-.card ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:15px}
-.card .best{font-size:13px;color:var(--muted)}
-.pages{display:grid;gap:18px}
-.page{display:grid;grid-template-columns:100px 1fr;gap:2px 18px}
-.page .n{font-family:var(--voice);font-style:normal;font-weight:500;font-size:26px;line-height:1.1}
-.page .q{font-size:13px;color:var(--muted);grid-column:1}
-.page p{margin:0;grid-column:2;grid-row:1 / span 2}
-@media (max-width:480px){.page{grid-template-columns:1fr}.page p{grid-column:1;grid-row:auto}}
-.qa{display:grid;gap:18px}
-.qa h4{font-size:16px;font-weight:500;margin:0 0 3px}
-.qa p{margin:0}
-ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:14px}
-ol.steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:12px}
-ol.steps li::before{content:counter(s);font-family:var(--data);font-weight:300;font-size:24px;line-height:1.1;color:var(--sun)}
-ol.steps b{display:block;font-weight:500}
-.join{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;background:var(--card);border:1px solid var(--rule);border-radius:17px;padding:18px}
-@media (max-width:480px){.join{grid-template-columns:1fr}}
-#qr{width:132px;height:132px;background:#fff;padding:8px;border-radius:10px;display:grid;place-items:center}
-#qr img,#qr canvas{width:116px!important;height:116px!important}
-.btn{display:inline-block;background:var(--ink);color:var(--canvas);text-decoration:none;border-radius:999px;padding:9px 18px;font-weight:500;font-size:15px}
-hr{border:0;border-top:1px solid var(--rule);margin:0}
-footer{font-size:13px;color:var(--muted);display:grid;gap:6px}
-</style>
+
 
 <div class="sky" aria-hidden="true"></div>
 <main>
   <header>
+    <div class="languages" role="navigation" aria-label="Languages"><a lang="en" hreflang="en" href="index.html" aria-current="page">English</a> <a lang="es" hreflang="es" href="es/index.html">Español</a> <a lang="de" hreflang="de" href="de/index.html">Deutsch</a> <a lang="pt-BR" hreflang="pt-BR" href="pt-br/index.html">Português (Brasil)</a></div>
     <svg class="mark" viewBox="0 0 48 48" role="img" aria-label="olto">
       <circle cx="24" cy="21" r="13" fill="var(--sun)"/>
       <rect x="2.6" y="33.1" width="42.8" height="4.6" rx="2.3" fill="var(--warm)"/>
@@ -117,7 +60,7 @@ footer{font-size:13px;color:var(--muted);display:grid;gap:6px}
     <span class="eyebrow">the app</span>
     <h2>Five pages, one question each.</h2>
     <div class="pages">
-      <div class="page"><span class="n">olto</span><span class="q">let's go</span><p>Where you start a workout, or let one start itself. It shows how much you've done today and how much is left in the tank.</p></div>
+      <div class="page"><span class="n">olto</span><span class="q">let's go</span><p>Start a workout or review what olto has detected. See the activity you have logged today and the suggested range for your next session.</p></div>
       <div class="page"><span class="n">journal</span><span class="q">what did I do?</span><p>Your activity diary. Review a found walk, log a session you missed or filter your history by date, sport or gear.</p></div>
       <div class="page"><span class="n">form</span><span class="q">where am I going?</span><p>See your recent activity load, rank your goals and build a plan around the days, sports and time you choose.</p></div>
       <div class="page"><span class="n">you</span><span class="q">where am I?</span><p>Explore sleep, heart rate and other available trends. Open a capacity for its evidence or visit the separate fueling and body composition page.</p></div>
@@ -155,14 +98,19 @@ footer{font-size:13px;color:var(--muted);display:grid;gap:6px}
   <section id="sources">
     <span class="eyebrow">your devices</span>
     <h2>Works with what you have.</h2>
-    <p class="note">olto reads Apple Health, so anything that writes to it counts: an Apple Watch, but also Garmin, Polar, Oura, Whoop, a smart scale or any app that saves workouts, sleep or heart rate there. For the full detail of each workout, two more doors are open.</p>
+    <p class="note">An Apple Watch, a ring, a smart scale or an app from Garmin, Polar, Oura or WHOOP can contribute the readings it saves in Apple Health. For more detail, connect a sensor directly or import the recording through intervals.icu.</p>
     <div class="grid">
       <div class="card"><h3>Apple Health</h3>
-        <ul><li>Built into every iPhone, nothing to set up.</li><li>Your phone's own motion, steps and GPS, plus whatever your watch, ring or apps save there.</li><li>Sleep, heart rate variability and resting heart rate come from here and set your daily range.</li><li>Many watch apps save only a summary of each workout: time, distance, average heart rate.</li></ul>
+        <ul><li>Built into your iPhone. Choose which data to share when Health asks.</li><li>Your phone's own motion, steps and GPS, plus whatever your watch, ring or apps save there.</li><li>Sleep, heart rate variability and resting heart rate come from here and set your daily range.</li><li>Many watch apps save only a summary of each workout: time, distance, average heart rate.</li></ul>
         <span class="best">Enough for: most people, from day one.</span></div>
       <div class="card"><h3>intervals.icu</h3>
         <ul><li>A free training platform that receives the original file from Garmin, Suunto, Coros, Wahoo, Polar Flow, Zwift and more.</li><li>Second-by-second heart rate, power, cadence, speed, altitude and laps.</li><li>Works both ways: sessions olto plans can travel on to your watch.</li></ul>
         <span class="best">Worth it for: a non-Apple watch, a bike computer or a power meter.</span></div>
+      <div class="card"><h3>Direct Bluetooth pairing</h3>
+        <p>In Gear, open connected devices and wake your sensor. If it broadcasts a supported Bluetooth service, you can pair it directly with olto without the manufacturer's app. Examples include heart-rate straps, running foot pods, cycling power and cadence sensors, and compatible indoor bikes, treadmills or rowers.</p></div>
+      <div class="card"><h3>Heart rate with AirPods Pro 3</h3>
+        <p>Wear at least one connected AirPod and enable Heart Rate in AirPods settings. Give olto permission to read heart rate and to read and write workouts in Apple Health. Start a workout in olto. Health can supply heart-rate readings from your ear during the session.</p>
+        <a href="https://support.apple.com/en-us/123184">Apple’s AirPods setup guide</a></div>
       <div class="card"><h3>Polar, direct</h3>
         <ul><li>Polar sensors connect to olto over Bluetooth, no account needed.</li><li>See supported heart-rate readings live while you record.</li><li>Sensors that store their own workouts hand them to olto directly.</li></ul>
         <span class="best">Worth it for: accurate heart rate on anything, strength and indoor included.</span></div>
@@ -180,8 +128,8 @@ footer{font-size:13px;color:var(--muted);display:grid;gap:6px}
       <li><span><b>Create a free account</b>at intervals.icu, in any browser.</span></li>
       <li><span><b>Connect your watch's own app</b>In Settings, under connections, link Garmin Connect, Suunto, Coros, Wahoo, Polar Flow or whichever you use. Connect it directly: workouts that only arrive through Strava can't be passed on to other apps.</span></li>
       <li><span><b>Let planned workouts reach your watch (optional)</b>In that same connection, switch on uploading planned workouts.</span></li>
-      <li><span><b>Copy two things</b>From the developer settings: your athlete ID (it looks like i123456) and your API key. Keep the key private.</span></li>
-      <li><span><b>Paste them into olto</b>Settings, then sources, then intervals.icu. New workouts then arrive by themselves and wait in your journal.</span></li>
+      <li><span><b>Connect your account</b>In olto, open Settings, then Sources and intervals.icu. Sign in. If you use an API key, copy the athlete ID and key from your intervals.icu developer settings and keep the key private.</span></li>
+      <li><span><b>Choose what to sync</b>Enable the directions you want. Review imported workouts in Journal.</span></li>
     </ol>
   </section>
 
@@ -220,7 +168,7 @@ footer{font-size:13px;color:var(--muted);display:grid;gap:6px}
     <span class="eyebrow">join the beta</span>
     <h2>Free while it grows.</h2>
     <div class="join">
-      <div id="qr" aria-label="QR code for the beta"></div>
+      <div id="qr"><img src="assets/beta-qr.svg" width="116" height="116" alt="QR code to join the olto TestFlight beta"></div>
       <div style="display:grid;gap:10px">
         <p style="margin:0">Scan with your iPhone camera, or tap the button on your iPhone. It opens Apple's TestFlight app, which installs olto.</p>
         <p style="margin:0"><a class="btn" id="joinlink" href="https://testflight.apple.com/join/uTrXgEsq">join on TestFlight</a></p>
@@ -234,14 +182,7 @@ footer{font-size:13px;color:var(--muted);display:grid;gap:6px}
     <span>An independent app. olto is written in lowercase on purpose. Questions: <a href="mailto:oltoapp@icloud.com">oltoapp@icloud.com</a> or a message on Instagram. <a href="privacy.html">Privacy</a>.</span>
   </footer>
 </main>
-<script>
-// The TestFlight public link. The QR is a static image (assets/beta-qr.svg),
-// made from the same link, so the page needs no script from anywhere else.
-const BETA_LINK = "https://testflight.apple.com/join/uTrXgEsq";
-const box = document.getElementById("qr"), link = document.getElementById("joinlink");
-link.href = BETA_LINK;
-box.innerHTML = '<img src="assets/beta-qr.svg" width="116" height="116" alt="QR code: join the olto beta on TestFlight">';
-</script>
+
 
 </body>
 </html>
